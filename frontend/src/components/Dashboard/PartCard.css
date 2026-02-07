@@ -1,0 +1,192 @@
+.part-card {
+    position: relative;
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: visible;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.part-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: var(--primary);
+}
+
+.part-card.selected {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(30, 94, 255, 0.15);
+}
+
+/* Selection Checkbox */
+.part-checkbox {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    cursor: pointer;
+    transition: all 0.2s;
+    opacity: 0;
+}
+
+.part-card:hover .part-checkbox,
+.part-checkbox.checked {
+    opacity: 1;
+}
+
+.part-checkbox:hover {
+    border-color: var(--primary);
+}
+
+.part-checkbox.checked {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.part-checkbox svg {
+    width: 14px;
+    height: 14px;
+}
+
+.part-thumbnail {
+    height: 180px;
+    background: #F2F2F2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    overflow: hidden;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.part-svg-preview {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.part-thumbnail img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.part-placeholder {
+    width: 80px;
+    height: 80px;
+    color: var(--text-muted);
+}
+
+.part-placeholder svg {
+    width: 100%;
+    height: 100%;
+}
+
+.part-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.part-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--border-color);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.part-info {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.part-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.part-dimensions {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.part-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+}
+
+.add-to-cart-btn {
+    padding: 8px 16px;
+    background: var(--bg-white);
+    border: 1px solid var(--primary);
+    border-radius: var(--radius-md);
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.add-to-cart-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.action-icons {
+    display: flex;
+    gap: 4px;
+}
+
+.icon-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.icon-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.icon-btn:hover {
+    background: var(--border-light);
+    color: var(--text-primary);
+}

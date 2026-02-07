@@ -1,0 +1,256 @@
+.svg-viewer-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.svg-viewer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.file-name {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.viewer-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.control-button {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.control-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.control-button.active {
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dimensions-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.dimensions-tooltip {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    background: white;
+    color: #333;
+    padding: 10px 14px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    white-space: nowrap;
+    z-index: 100;
+    min-width: 120px;
+    text-align: center;
+}
+
+.dimensions-tooltip::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 6px 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+}
+
+.tooltip-header {
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.tooltip-content {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2c3e50;
+    font-family: monospace;
+}
+
+.zoom-level {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+.svg-wrapper {
+    flex: 1;
+    border: 2px solid #ddd;
+    overflow: hidden;
+    position: relative;
+    background: white;
+    cursor: default;
+    /* 화살표 커서 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.svg-wrapper.panning {
+    cursor: move;
+    /* 팬 중일 때는 이동 커서 */
+}
+
+.svg-viewer-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: #f5f5f5;
+    border-radius: 8px;
+    border: 2px dashed #ccc;
+}
+
+.svg-viewer-empty p {
+    color: #999;
+    font-size: 16px;
+}
+
+svg {
+    display: block;
+    transition: transform 0.05s ease-out;
+}
+
+/* 그리드 */
+.grid-line {
+    stroke: #e8e8e8;
+    stroke-width: 0.5;
+    vector-effect: non-scaling-stroke;
+}
+
+.grid-line-major {
+    stroke: #d0d0d0;
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+}
+
+/* 엔티티 스타일 */
+.entity-line {
+    stroke: #333;
+    stroke-width: 1.5;
+    fill: none;
+    transition: all 0.2s ease;
+}
+
+/* 원 스타일 */
+.entity-circle {
+    fill: white;
+    /* 내부 영역도 호버 가능하도록 */
+    stroke: black;
+    stroke-width: 1;
+    cursor: pointer;
+    transition: stroke-width 0.2s ease;
+}
+
+.entity-circle:hover {
+    stroke-width: 2;
+}
+
+/* 절곡선 스타일 */
+.bend-line {
+    stroke: #FF00FF;
+    /* 마젠타 */
+    stroke-width: 1.5;
+    stroke-dasharray: 5, 5;
+    fill: none;
+    transition: all 0.3s ease;
+}
+
+.bend-line:hover {
+    filter: drop-shadow(0 0 4px rgba(255, 0, 255, 0.6));
+}
+
+/* 원 지름 표시 */
+.dimension-group {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.dimension-group.visible {
+    opacity: 1;
+}
+
+.dimension-line {
+    stroke: #333;
+    stroke-width: 1;
+    fill: none;
+}
+
+.label-bg {
+    fill: black;
+    rx: 4;
+    ry: 4;
+}
+
+.label-text {
+    fill: white;
+    font-size: 11px;
+    font-weight: bold;
+    text-anchor: middle;
+    dominant-baseline: middle;
+}
+
+/* 치수 레이블 */
+.dimension-label {
+    fill: #666;
+    font-size: 11px;
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+    text-anchor: middle;
+}
+
+.dimension-label-bg {
+    fill: white;
+    opacity: 0.8;
+}
+
+.viewer-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    background: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+    font-size: 13px;
+    color: #666;
+}
+
+.viewer-info span {
+    font-weight: 500;
+}

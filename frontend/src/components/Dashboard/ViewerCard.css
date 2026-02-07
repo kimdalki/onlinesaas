@@ -1,0 +1,51 @@
+.viewer-card {
+    grid-column: 1 / -1;
+    min-height: 500px;
+}
+
+.viewer-filename {
+    margin-left: auto;
+    padding: 4px 12px;
+    background: rgba(102, 126, 234, 0.2);
+    border-radius: 12px;
+    font-size: 12px;
+    color: #667eea;
+}
+
+.viewer-content {
+    flex: 1;
+    min-height: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.empty-viewer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    gap: 16px;
+}
+
+.empty-viewer .empty-icon {
+    font-size: 64px;
+    opacity: 0.5;
+}
+
+.empty-viewer p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 15px;
+    margin: 0;
+}
+
+.viewer-hint {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Override SVGViewer styles for dark theme */
+.viewer-content .svg-viewer-container {
+    background: transparent !important;
+}
